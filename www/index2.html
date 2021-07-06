@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>login</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <script type="text/javascript">
+$(document).ready(function() {
+            $("#buscar").click(function() {                
+                var usuario = $("#usuario").val();
+                var clave = $("#clave").val();
+                              
+                var dataString = "usuario=" + usuario + "&clave=" + clave + "&buscar=";
+                
+                if ($.trim(usuario).length > 0 & $.trim(clave).length > 0 ) {
+                    $.ajax({
+                        type: "POST",
+                        url: "http://192.168.100.115/jardin1/www/php/usuario.php",
+                        data: dataString,
+                        crossDomain: true,
+                        cache: false,
+                        beforeSend: function() {
+                            $("#mensaje").val('Connecting...');
+                        },
+                        success: function(data) {
+                            if (data == "si") {
+                                alert("SI ESTA OK");
+                            } else if (data == "no") {
+                                alert("Usuario o Clave Erronea");
+                            }
+                        }
+                    });
+                }else{
+                    alert("ingrese los Datos de usuario y clave");  
+                }
+                return false;
+            });
+        });
+    </script>
+
+</head>
+
+<body class="text-center">
+    <div class="container">
+        <div class="container-fluid">            
+            <div class="rows py-5 text-center">
+                <form>
+                    <img class="mb-4" src="img/jardin.jpg" alt="" width="200" height="200">
+                    <h1 class="h3 mb-3 font-weight-normal">Jardin Infantil</h1>
+                    <label for="inputEmail" class="sr-only">USUARIO: </label>
+                    <input type="text" id="usuario" class="form-control" placeholder="su usuario" autofocus="">
+                    <label for="inputPassword" class="sr-only">CLAVE: </label>
+                    <input type="password" id="clave" class="form-control" placeholder="su clave" >
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me"> RECORDAR
+                        </label>
+                    </div>
+                    <input class="btn btn-lg btn-primary btn-block" type="button" id="buscar" value="ENTRAR ">
+                    <p class="mt-5 mb-3 text-muted">© IPCHILE</p>
+                </form>
+                <div id="mensaje"></div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

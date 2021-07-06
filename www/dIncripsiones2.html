@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>IPCHILE</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/miscss.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#insert").click(function() {                
+                var rut = $("#rut").val();
+                var nombres = $("#nombres").val();
+                var apellidos = $("#apellidos").val();
+                var correo_personal = $("#correo_personal").val();
+                var fono_personal = $("#fono_personal").val();
+                var domicilio = $("#domicilio").val();
+                var fecha_nacimiento = $("#fecha_nacimiento").val();
+                var nivel = $("#nivel").val();
+               
+                var dataString = "rut=" + rut + "&nombres=" + nombres + "&apellidos=" + apellidos + "&correo_personal=" + correo_personal + "&fono_personal=" + fono_personal + "&domicilio=" + domicilio + "&fecha_nacimiento=" + fecha_nacimiento + "&nivel=" + nivel + "&insert=";
+                
+                if ($.trim(rut).length > 0 & $.trim(nombres).length > 0 & $.trim(apellidos).length > 0 & $.trim(correo_personal).length > 0 & $.trim(fono_personal).length > 0 & $.trim(domicilio).length > 0 & $.trim(fecha_nacimiento).length > 0 & $.trim(nivel).length > 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: "http://192.168.100.115/jardin1/www/php/insertParvularia.php",
+                        data: dataString,
+                        crossDomain: true,
+                        cache: false,
+                        beforeSend: function() {
+                            $("#insert").val('Connecting...');
+                        },
+                        success: function(data) {
+                            if (data == "success") {
+                                alert("GUARDADO OK");
+                                $("#insert").val('submit');
+                            } else if (data == "error") {
+                                alert("NO SE GUARDO");
+                            }
+                        }
+                    });
+                }
+                return false;
+            });
+        });
+        </script>
+
+</head>
+
+<body>
+    <!-- munu de navegacion amburguesa -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Menus Navegación</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">IPCHILE 2021</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="./index.html">Inicio</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Portal Parvularia <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="./pRegistroDeAtención.html">Registro de Atención de Apoderados</a></li>
+                            <li class="divider"></li>
+                            <li><a href="pSeleccionNivelSegunParvularia.html">Seleccion nivel segun parvularia</a></li>
+                            <li class="divider"></li>
+                            <li><a href="pComunicacionesMasivas.html">Comunicaciones Masivas</a></li>
+                            <li class="divider"></li>
+                            <li><a href="pHistoricoEstudiantes.html">Lista Estudiantes Ficha Historico</a></li>
+                            <li class="divider"></li>
+                            <li><a href="pIngresoProgresoEstudiante.html">Ingreso de progreso por estudiante</a></li>
+                            <li class="divider"></li>
+                            <li><a href="pHistoricoProgreso.html">Historial de Progreso</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Portal Direcciones<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="dInformacionMasSede.html">Información Masiva de la Sede</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="dRegiostroVisitasReuniones.html">Registro de Visitas o Reuniones con
+                                    Apoderados</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="dHistorialEstudiante.html">Historial por Estudiante</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="dIncripsiones.html">Inscripción estudiantes, Apoderados y Asignación de
+                                    Nivel</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="dInformacionNivel.html">Información por Nivel e Historial</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="dIncripsiones2.html">Ingreso Parvularia</a>
+                            </li>
+
+                        </ul>
+
+
+
+                    </li>
+
+                    <!-- menu apoderados -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Acceso Apoderados<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="aHistorialHijo.html">Historial Hijo</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="aComunicacionMasiva.html">Comunicaciones masivas en forma individual</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="aHistorialAtenciones.html">Historial de Atenciones</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="aHistorialReuniones.html">Historial Reuniones</a>
+                            </li>
+                            <!-- fin menu apoderados -->
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- cierre menu -->
+    <hr>
+
+    <!-- llenar aqui -->
+    <section class="col-lg-4">
+        <br>
+        <h1>Parvularia</h1>
+        <hr>
+        <center>
+            <img src="https://image.freepik.com/vector-gratis/dibujos-animados-bebe-aprender-gatear_61878-365.jpg" alt="Bebe" class="img-circle" width="100px">
+            </div>
+        </center>
+        <div class="list">
+            <h4 style="color:red;"><strong>Datos:</strong></h4>
+            <div class="form-group">
+                <label for="Rut">Rut</label>
+                <input type="text" class="form-control" id="rut" placeholder="Rut">
+            </div>
+            <div class="form-group">
+                <label for="apoderadoNombre">Nombres</label>
+                <input type="text" class="form-control" id="nombres" placeholder="Nombres">
+            </div>
+            <div class="form-group">
+                <label for="apoderadoApellidos">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+            </div>
+            <div class="form-group">
+                <label for="apoderadoCorreo">Correo Electronico</label>
+                <input type="email" class="form-control" id="correo_personal" placeholder="Correo Electronico">
+            </div>
+            <div class="form-group">
+                <label for="apoderadoTel1">Telefono Personal</label>
+                <input type="text" class="form-control" id="fono_personal" placeholder="Telefono Personal">
+            </div>
+            <div class="form-group">
+                <label for="Domicilio">Domicilio</label>
+                <input type="text" class="form-control" id="domicilio" placeholder="Domicilio">
+            </div>
+            <div class="form-group">
+                <label for="apoderadoFechaNac">Fecha Nacimiento</label>
+                <input type="date" class="form-control" id="fecha_nacimiento" placeholder="Fecha Nacimiento">
+            </div>
+            <div class="form-group">
+                <label for="Domicilio">Nivel</label>
+                <input type="text" class="form-control" id="nivel" placeholder="Medio Menor o Medio Mayor">
+            </div>
+            <hr><br>
+            <input type="button" class="btn btn-primary" id="insert" value="Nueva Parvularia">
+            <hr>
+        </div>
+    </section>
+    <!-- ============= -->
+
+    <script src="cordova.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/fastclick.min.js"></script>
+    <script>
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                var attachFastClick = Origami.fastclick;
+                attachFastClick(document.body);
+            }, false);
+        }
+    </script>
+</body>
+
+</html>
